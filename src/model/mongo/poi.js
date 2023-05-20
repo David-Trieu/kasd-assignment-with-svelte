@@ -1,6 +1,7 @@
 import Mongoose from "mongoose";
 
 import {User} from "./user.js";
+import {category} from "./category.js";
 
 const { Schema } = Mongoose;
 
@@ -12,9 +13,17 @@ const poiSchema = new Schema({
             longitude: Number,
         },
     Description:String,
-    Category: String,
     Img: String,
-    createdBy: User,
+
+    CategoryId: {
+        type: Schema.Types.ObjectId,
+        ref: "category",
+    },
+
+    createdById: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    }
 });
 
 export const POI = Mongoose.model("poi", poiSchema);

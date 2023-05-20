@@ -6,7 +6,14 @@ export const poiStore = {
         const POIs = await POI.find().lean();
         return POIs;
     },
+    async getPOIByCategoryId(id){
+        if (id) {
+            const POIByCategoryId = await POI.findOne({ CategoryId: id }).lean();
 
+            return POIByCategoryId;
+        }
+        return null;
+    },
     async getPOIById(id) {
         if (id) {
             const POIById = await POI.findOne({ _id: id }).lean();
@@ -15,11 +22,10 @@ export const poiStore = {
         }
         return null;
     },
-    async getPOIByUser(user) {
-        if (user) {
-            const POIByUser = await POI.findOne({ createdBy: user }).lean();
-
-            return POIByUser;
+    async getPOICreatedById(id) {
+        if (id) {
+            const POIByUserId = await POI.findOne({ createdById: id }).lean();
+            return POIByUserId;
         }
         return null;
     },

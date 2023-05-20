@@ -13,8 +13,11 @@ export const userStore = {
         }
         return null;
     },
-
-    async addUser(user) {
+    async getUserByEmail(email) {
+        const user = await User.findOne({ email: email }).lean();
+        return user;
+    },
+    async addNewUser(user) {
         const newUser = new User(user);
         const userObj = await newUser.save();
         const u = await this.getUserById(userObj._id);

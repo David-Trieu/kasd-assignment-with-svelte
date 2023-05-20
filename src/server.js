@@ -4,9 +4,12 @@ import path from "path";
 import {webRoutes} from "./web-routes.js"
 import { fileURLToPath } from "url";
 import Vision from "@hapi/vision";
+import {db} from "./model/db.js";
+import * as dotenv from "dotenv";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 
 async function init() {
     const server = Hapi.server({
@@ -28,6 +31,7 @@ async function init() {
         layout: true,
         isCached: false,
     });
+    db.init()
     server.route(webRoutes);
     await server.start();
 }
