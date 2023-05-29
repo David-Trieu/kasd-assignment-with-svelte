@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 import Vision from "@hapi/vision";
 import {db} from "./model/db.js";
 import * as dotenv from "dotenv";
+import {apiRoutes} from "./api-routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,6 +34,7 @@ async function init() {
     });
     db.init()
     server.route(webRoutes);
+    server.route(apiRoutes)
     await server.start();
 }
 

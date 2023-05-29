@@ -9,7 +9,6 @@ export const poiStore = {
     async getPOIByCategoryId(id){
         if (id) {
             const POIByCategoryId = await POI.findOne({ CategoryId: id }).lean();
-
             return POIByCategoryId;
         }
         return null;
@@ -29,7 +28,8 @@ export const poiStore = {
         }
         return null;
     },
-    async addPOI(inputPoi) {
+    async addPOI(id, inputPoi) {
+        inputPoi.createdBy = id;
         const newPOI = new POI(inputPoi);
         const poiObj = await newPOI.save();
         return this.getPOIById(poiObj._id);

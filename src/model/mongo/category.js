@@ -5,10 +5,10 @@ const { Schema } = Mongoose;
 
 const categorySchema = new Schema({
     title: String,
-    createdById: {
+    createdBy: {
         type: Schema.Types.ObjectId,
         ref: "User",
     }
 });
 
-export const category = Mongoose.model("category", categorySchema);
+export const Category = Mongoose.model("category", categorySchema);
