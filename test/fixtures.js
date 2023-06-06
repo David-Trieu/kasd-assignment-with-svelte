@@ -3,24 +3,32 @@ export const serviceUrl = "http://localhost:3000"
 export const testuser = {
     userName: "tester",
     email: "t@t.com",
-    password: "t"
+    password: "t",
+    hasAdminRights: true,
 };
+export const testuserCredentials = {
+    email: "t@t.com",
+    password: "t",
+}
 export const testUsers=[
 
     {
         userName: "tester1",
         email: "t1@t.com",
-        password: "t"
+        password: "t",
+        hasAdminRights: true,
     },
     {
         userName: "tester2",
         email: "t2@t.com",
-        password: "t"
+        password: "t",
+        hasAdminRights: true,
     },
     {
         userName: "tester3",
         email: "t3@t.com",
-        password: "t"
+        password: "t",
+        hasAdminRights: true,
     },
 ]
 

@@ -1,12 +1,18 @@
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
 import { placemarkService } from "./placemark-service.js";
-import { testpoi, testuser, testPOIs} from "../fixtures.js";
+import {testpoi, testuser, testPOIs, testuserCredentials} from "../fixtures.js";
 
 suite("POI API tests", () => {
+
     setup(async () => {
+        await placemarkService.clearAuth();
+        await placemarkService.createUser(testuser);
+        await placemarkService.authenticate(testuserCredentials);
+        await placemarkService.deleteAllUsers();
+        const user = await placemarkService.createUser(testuser);
+        await placemarkService.authenticate(testuserCredentials);
         await placemarkService.deleteAllPOIs();
-        const user = await placemarkService.createUser(testuser)
         for (let i = 0; i < testPOIs.length; i += 1) {
             testPOIs[0] = await placemarkService.createPOI(user._id,testPOIs[i]);
         }
@@ -15,6 +21,7 @@ suite("POI API tests", () => {
 
     test("create a poi", async () => {
         const user = await placemarkService.createUser(testuser)
+        await placemarkService.authenticate(testuserCredentials);
         const newPOI = await placemarkService.createPOI(user._id, testpoi);
         assertSubset(testpoi, newPOI);
         assert.isDefined(newPOI._id);

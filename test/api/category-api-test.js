@@ -1,10 +1,14 @@
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
 import { placemarkService } from "./placemark-service.js";
-import { testCategory, testuser, testCategories} from "../fixtures.js";
+import {testCategory, testuser, testCategories, testuserCredentials} from "../fixtures.js";
 
 suite("Category API tests", () => {
     setup(async () => {
+        await placemarkService.clearAuth();
+        await placemarkService.createUser(testuser);
+        await placemarkService.authenticate(testuserCredentials);
+        await placemarkService.deleteAllUsers();
         await placemarkService.deleteAllCategories();
         const user1 = await placemarkService.createUser(testuser)
         for (let i = 0; i < testCategories.length; i += 1) {

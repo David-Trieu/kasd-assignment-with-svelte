@@ -1,4 +1,5 @@
 import Hapi from "@hapi/hapi";
+import Inert from "@hapi/inert";
 import Handlebars from "handlebars";
 import path from "path";
 import {webRoutes} from "./web-routes.js"
@@ -9,8 +10,18 @@ import * as dotenv from "dotenv";
 import {apiRoutes} from "./api-routes.js"
 import Cookie from "@hapi/cookie";
 import {accountsController} from "./controllers/accounts-controller.js";
+import HapiSwagger from "hapi-swagger";
+import Joi from "joi";
+import jwt from "hapi-auth-jwt2";
+import { validate } from "./api/jwt-utils.js";
 
-;
+const swaggerOptions = {
+    info: {
+        title: "Placemark API",
+        version: "0.1",
+    },
+};
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -30,6 +41,18 @@ async function init() {
     console.log("Server started")
     await server.register(Vision);
     await server.register(Cookie);
+    await server.register(jwt);
+    await server.register(Inert);
+    await server.register([
+        Inert,
+        Vision,
+        {
+            plugin: HapiSwagger,
+            options: swaggerOptions,
+        },
+    ]);
+
+    server.validator(Joi);
 
     server.auth.strategy("session", "cookie", {
         cookie: {
@@ -40,6 +63,12 @@ async function init() {
         redirectTo: "/",
         validate: accountsController.validate,
     });
+    server.auth.strategy("jwt", "jwt", {
+        key: process.env.cookie_password,
+        validate: validate,
+        verifyOptions: { algorithms: ["HS256"] }
+    });
+
     server.auth.default("session");
 
     server.views({

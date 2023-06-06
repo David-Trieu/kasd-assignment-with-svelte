@@ -17,4 +17,8 @@ export const apiRoutes = [
     { method: "POST", path: "/api/users/{id}/categories", config: categoryApi.create },
     { method: "DELETE", path: "/api/categories", config: categoryApi.deleteAll },
     { method: "GET", path: "/api/categories/{id}", config: categoryApi.findOne },
+
+
+    { method: "POST", path: "/api/users/authenticate", config: userApi.authenticate },
+
 ];

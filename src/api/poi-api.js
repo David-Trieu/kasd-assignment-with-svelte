@@ -1,9 +1,14 @@
 import Boom from "@hapi/boom";
 import { db } from "../model/db.js";
+import { EventEmitter } from "events";
+EventEmitter.setMaxListeners(30);
 
 export const poiApi = {
+
     find: {
-        auth: false,
+        auth: {
+            strategy: "jwt",
+        },
         handler: async function(request, h) {
             try {
                 const pois = await db.poiStore.getAllPOIs();
@@ -15,7 +20,9 @@ export const poiApi = {
     },
 
     findOne: {
-        auth: false,
+        auth: {
+            strategy: "jwt",
+        },
         handler: async function(request, h) {
             try {
                 const poi = await db.poiStore.getPOIById(request.params.id);
@@ -30,7 +37,9 @@ export const poiApi = {
     },
 
     create: {
-        auth: false,
+        auth: {
+            strategy: "jwt",
+        },
         handler: async function(request, h) {
             try {
                 const poi = await db.poiStore.addPOI(request.params.id,request.payload);
@@ -45,7 +54,9 @@ export const poiApi = {
     },
 
     deleteAll: {
-        auth: false,
+        auth: {
+            strategy: "jwt",
+        },
         handler: async function(request, h) {
             try {
                 await db.poiStore.deleteAllPOIs();
