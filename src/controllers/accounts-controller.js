@@ -37,7 +37,23 @@ export const accountsController = {
             if (!user || user.password !== password) {
                 return h.redirect("/");
             }
+            request.cookieAuth.set({ id: user._id });
             return h.redirect("/overview");
         },
     },
+    logout: {
+        handler: function (request, h) {
+            request.cookieAuth.clear();
+            return h.redirect("/");
+        },
+    },
+
+    async validate(request, session) {
+        const user = await db.userStore.getUserById(session.id);
+        if (!user) {
+            return { isValid: false };
+        }
+        return { isValid: true, credentials: user };
+    },
+
 }
