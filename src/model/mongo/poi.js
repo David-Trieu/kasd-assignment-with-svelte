@@ -7,14 +7,14 @@ const { Schema } = Mongoose;
 
 const poiSchema = new Schema({
     name:String,
-    Location:
+    location:
         {
             latitude: Number,
             longitude: Number,
         },
-    Description:String,
-    Img: String,
-    CategoryId: {
+    description:String,
+    img: String,
+    categoryId: {
         type: Schema.Types.ObjectId,
         ref: "category",
     },

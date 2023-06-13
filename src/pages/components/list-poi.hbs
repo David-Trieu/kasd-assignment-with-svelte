@@ -15,15 +15,18 @@
                 {{name}}
             </td>
             <td>
-                Lat={{Location.latitude}},Long={{Location.longitude}}
+                Lat={{location.latitude}},Long={{location.longitude}}
             </td>
             <td>
-                {{Description}}
+                {{description}}
             </td>
             <td>
                 <a href="/overview/deletepoi/{{_id}}" class="ui icon button">
                     <i class="fas fa-trash"></i>
                 </a>
+            </td>
+            <td>
+                <a href="/poi/{{_id}}" class="button">OPEN</a>
             </td>
         </tr>
     {{/each}}

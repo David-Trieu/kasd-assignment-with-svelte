@@ -34,37 +34,37 @@ export const testUsers=[
 
 export const testpoi = {
     name: "testpoi",
-    Location:{
+    location:{
         latitude:1,
         longitude:1,
     },
-    Description: "test"
+    description: "test"
 };
 export const testPOIs=[
 
     {
         name: "testpoi1",
-        Location:{
+        location:{
             latitude:1,
             longitude:1,
         },
-        Description: "test1"
+        description: "test1"
     },
     {
         name: "testpoi2",
-        Location:{
+        location:{
             latitude:2,
             longitude:2,
         },
-        Description: "test2"
+        description: "test2"
     },
     {
         name: "testpoi3",
-        Location:{
+        location:{
             latitude:3,
             longitude:3,
         },
-        Description: "test3"
+        description: "test3"
     },
 ]
 export const testCategory = {

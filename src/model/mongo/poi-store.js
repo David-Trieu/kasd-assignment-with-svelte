@@ -16,7 +16,6 @@ export const poiStore = {
     async getPOIById(id) {
         if (id) {
             const POIById = await POI.findOne({ _id: id }).lean();
-
             return POIById;
         }
         return null;
@@ -28,8 +27,8 @@ export const poiStore = {
         }
         return null;
     },
-    async addPOI(id, inputPoi) {
-        inputPoi.createdBy = id;
+    async addPOI(userid, inputPoi) {
+        inputPoi.createdBy = userid;
         const newPOI = new POI(inputPoi);
         const poiObj = await newPOI.save();
         return this.getPOIById(poiObj._id);
@@ -41,8 +40,14 @@ export const poiStore = {
             console.log("bad id");
         }
     },
-
     async deleteAllPOIs() {
         await POI.deleteMany({});
-    }
+    },
+    async updatePOI(updatedPOI) {
+        const changePOI = await POI.findOne({_id: updatedPOI._id});
+        changePOI.title = updatedPOI.title;
+        changePOI.img = updatedPOI.img;
+        await changePOI.save();
+    },
+
 };

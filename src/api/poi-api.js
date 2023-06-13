@@ -1,7 +1,10 @@
 import Boom from "@hapi/boom";
 import { db } from "../model/db.js";
 import { EventEmitter } from "events";
+import {IdSpec, POIAPISpec, POISpec, POISpecPlusLocation,} from "../model/joi-schemas.js";
+import {validationError} from "./logger.js";
 EventEmitter.setMaxListeners(30);
+
 
 export const poiApi = {
 
@@ -17,6 +20,9 @@ export const poiApi = {
                 return Boom.serverUnavailable("Database Error");
             }
         },
+        tags: ["api"],
+        description: "Get all points of interest",
+        notes: "Returns all points of interest",
     },
 
     findOne: {
@@ -34,6 +40,11 @@ export const poiApi = {
                 return Boom.serverUnavailable("No poi with this id");
             }
         },
+        tags: ["api"],
+        description: "Get one point of interest",
+        notes: "Returns one point of interest",
+        validate: { params: { id: IdSpec }, failAction: validationError },
+        response: { schema: POISpecPlusLocation, failAction: validationError },
     },
 
     create: {
@@ -51,6 +62,11 @@ export const poiApi = {
                 return Boom.serverUnavailable("Database Error");
             }
         },
+        tags: ["api"],
+        description: "Create a point of interest",
+        notes: "Returns the newly created point of interest",
+        validate: { payload: POIAPISpec, params:{id: IdSpec}, failAction: validationError },
+        response: { schema: POISpecPlusLocation, failAction: validationError },
     },
 
     deleteAll: {
@@ -65,5 +81,7 @@ export const poiApi = {
                 return Boom.serverUnavailable("Database Error");
             }
         },
+        tags: ["api"],
+        description: "Delete all points of interest",
     },
 };

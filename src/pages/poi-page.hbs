@@ -1,0 +1,26 @@
+{{> logout}}
+<section class="section columns is-vcentered">
+    <div class="column">
+        <div class="name title">
+            {{poi.name}}
+        </div>
+        <div>
+            <div>
+                <p >Description: </p>
+                <p >{{poi.description}}</p>
+            </div>
+            <div>
+                <p >Latitude: </p>
+                <p >{{poi.location.latitude}}</p>
+            </div>
+            <div>
+                <p >Longitude: </p>
+                <p >{{poi.location.longitude}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        {{> poi-image}}
+    </div>
+
+</section>

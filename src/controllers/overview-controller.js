@@ -1,4 +1,5 @@
 import {db} from "../model/db.js";
+import {POILocationSpec, POISpec,} from "../model/joi-schemas.js";
 
 
 export const overviewController = {
@@ -15,15 +16,22 @@ export const overviewController = {
         },
     },
     addPOI:{
+        validate: {
+            payload: POILocationSpec,
+            options: { abortEarly: false },
+            failAction: function (request, h, error) {
+                return h.view("overview", { title: "Something went wrong, try again", errors: error.details }).takeover().code(400);
+            },
+        },
         handler: async function (request, h) {
             const  loggedInUser = request.auth.credentials;
             const newPOI = {
                 createdBy: loggedInUser._id,
-                name: request.payload.poiname,
-                Description: request.payload.description,
-                Location: {
-                    latitude: request.payload.lat,
-                    longitude: request.payload.long,
+                name: request.payload.name,
+                description: request.payload.description,
+                location: {
+                    latitude: request.payload.latitude,
+                    longitude: request.payload.longitude,
                 }
             }
             await db.poiStore.addPOI(loggedInUser._id,newPOI);

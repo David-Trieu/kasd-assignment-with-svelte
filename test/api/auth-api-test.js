@@ -20,14 +20,14 @@ suite("Authentication API tests", async () => {
 
     test("verify Token", async () => {
         const returnedUser = await placemarkService.createUser(testuser);
-        const response = await placemarkService.authenticate(testuser);
+        const response = await placemarkService.authenticate(testuserCredentials);
 
         const userInfo = decodeToken(response.token);
         assert.equal(userInfo.email, returnedUser.email);
         assert.equal(userInfo.userId, returnedUser._id);
     });
     test("check Unauthorized", async () => {
-        placemarkService.clearAuth();
+        await placemarkService.clearAuth();
         try {
             await placemarkService.deleteAllUsers();
             assert.fail("Route not protected");

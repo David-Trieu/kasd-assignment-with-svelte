@@ -12,6 +12,7 @@ suite("POI API tests", () => {
         await placemarkService.deleteAllUsers();
         const user = await placemarkService.createUser(testuser);
         await placemarkService.authenticate(testuserCredentials);
+
         await placemarkService.deleteAllPOIs();
         for (let i = 0; i < testPOIs.length; i += 1) {
             testPOIs[0] = await placemarkService.createPOI(user._id,testPOIs[i]);
@@ -25,6 +26,7 @@ suite("POI API tests", () => {
         const newPOI = await placemarkService.createPOI(user._id, testpoi);
         assertSubset(testpoi, newPOI);
         assert.isDefined(newPOI._id);
+
     });
 
     test("delete all poi", async () => {
