@@ -1,7 +1,7 @@
 import Boom from "@hapi/boom";
 import { db } from "../model/db.js";
 import { EventEmitter } from "events";
-import {IdSpec, POIAPISpec, POISpec, POISpecPlusLocation,} from "../model/joi-schemas.js";
+import {IdSpec, POISpecPlusLocation,} from "../model/joi-schemas.js";
 import {validationError} from "./logger.js";
 EventEmitter.setMaxListeners(30);
 
@@ -53,7 +53,8 @@ export const poiApi = {
         },
         handler: async function(request, h) {
             try {
-                const poi = await db.poiStore.addPOI(request.params.id,request.payload);
+                const userid = request.auth.credentials._id;
+                const poi = await db.poiStore.addPOI(userid, request.payload);
                 if (poi) {
                     return h.response(poi).code(201);
                 }
@@ -65,7 +66,7 @@ export const poiApi = {
         tags: ["api"],
         description: "Create a point of interest",
         notes: "Returns the newly created point of interest",
-        validate: { payload: POIAPISpec, params:{id: IdSpec}, failAction: validationError },
+        validate: { payload: POISpecPlusLocation, failAction: validationError },
         response: { schema: POISpecPlusLocation, failAction: validationError },
     },
 

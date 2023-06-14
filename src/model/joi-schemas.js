@@ -30,22 +30,12 @@ export const POISpec= Joi.object()
     })
 export const POISpecPlusLocation = POISpec.keys({
     _id: IdSpec,
-    __v: Joi.number(),
+    __v: Joi.number().optional(),
     location:{
         latitude: Joi.number().min(-90).max(90).example(1),
         longitude: Joi.number().min(-180).max(180).example(1),
     }
 }).label("POIDetailsPlus");
-
-export const POIAPISpec = Joi.object().keys({
-    name: Joi.string().required().example("asdsaddsa"),
-    description: Joi.string().required().allow("").example("fdgfggffdgfgd"),
-    category: Joi.string().optional().example("dfgdfggdfdf"),
-    location:{
-        latitude: Joi.number().min(-90).max(90).example(1),
-        longitude: Joi.number().min(-180).max(180).example(1),
-    }
-}).label("POILocation")
 
 export const POILocationSpec=POISpec.keys({
     latitude: Joi.number().min(-90).max(90).example(1),
