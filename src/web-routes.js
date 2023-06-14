@@ -1,6 +1,7 @@
 import {overviewController} from "./controllers/overview-controller.js";
 import {accountsController} from "./controllers/accounts-controller.js";
 import {poiController} from "./controllers/poi-controller.js";
+import {adminController} from "./controllers/admin-controller.js";
 
 export const webRoutes = [
     { method: "GET", path: "/", config: accountsController.index },
@@ -18,6 +19,8 @@ export const webRoutes = [
     { method: "GET", path: "/poi/{id}", config: poiController.index },
     { method: "POST", path: "/poi/{id}/uploadimage", config: poiController.uploadImage },
 
+    { method: "GET", path: "/admin", config: adminController.index },
+    { method: "GET", path: "/admin/deleteuser/{id}", config: adminController.deleteUser },
 
 
 

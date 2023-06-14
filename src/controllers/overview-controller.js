@@ -6,9 +6,8 @@ export const overviewController = {
     index:{
         handler: async function (request, h) {
             const showpois = await db.poiStore.getAllPOIs();
-
             const viewData={
-                title: "You are logged in",
+                title: "Placemark",
                 poi: showpois,
             }
             return h.view("overview", viewData);
