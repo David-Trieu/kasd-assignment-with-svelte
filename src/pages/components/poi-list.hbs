@@ -1,0 +1,38 @@
+<table class="table is-fullwidth">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each poi}}
+        <tr>
+            <td>
+                {{name}}
+            </td>
+            <td>
+                Lat={{location.latitude}},Long={{location.longitude}}
+            </td>
+            <td>
+                {{description}}
+            </td>
+            <td>
+                {{categoryName}}
+            </td>
+            <td>
+                <a href="/overview/deletepoi/{{_id}}" class="ui icon button">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </td>
+            <td>
+                <a href="/poi/{{_id}}" class="button">OPEN</a>
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
