@@ -18,6 +18,7 @@ const poiSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "category",
     },
+    categoryName: String,
     createdBy: {
         type: Schema.Types.ObjectId,
         ref: "User",

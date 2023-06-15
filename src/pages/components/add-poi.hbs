@@ -6,6 +6,17 @@
         <input class="input" type="number" placeholder="Lat" name="latitude">
         <input class="input" type="number" placeholder="Long" name="longitude">
         <input class="input" type="text" placeholder="Description" name="description">
+        <label class="label">Category</label>
+        <div class="control">
+            <div class="select">
+                <select class="input" name="category">
+                    {{#each category}}
+                        <option value={{_id}}>{{name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
     </div>
+
     <button class="button is-link">Add Point of Interest</button>
 </form>

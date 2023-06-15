@@ -25,8 +25,9 @@ export const POISpec= Joi.object()
     .keys({
         name: Joi.string().required().example("asdsaddsa"),
         description: Joi.string().required().allow("").example("fdgfggffdgfgd"),
-        category: Joi.string().optional().example("dfgdfggdfdf"),
+        categoryName: Joi.string().allow(""),
         createdBy: IdSpec,
+        img: Joi.string().optional(),
     })
 export const POISpecPlusLocation = POISpec.keys({
     _id: IdSpec,

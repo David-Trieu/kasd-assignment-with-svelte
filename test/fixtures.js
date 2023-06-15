@@ -68,18 +68,18 @@ export const testPOIs=[
     },
 ]
 export const testCategory = {
-    title: "testcategory",
+    name: "testcategory",
 
 };
 export const testCategories=[
 
     {
-        title: "testcategory1",
+        name: "testcategory1",
     },
     {
-        title: "testcategory2",
+        name: "testcategory2",
     },
     {
-        title: "testcategory3",
+        name: "testcategory3",
     },
 ]

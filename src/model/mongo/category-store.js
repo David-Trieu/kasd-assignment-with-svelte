@@ -11,11 +11,11 @@ export const categoryStore = {
 
     async getCategoryById(id) {
         if (id) {
-            const returnedcategory = await Category.findOne({ _id: id }).lean();
-            if (returnedcategory) {
-                returnedcategory.pois = await poiStore.getPOIByCategoryId(returnedcategory.id);
+            const returnedCategory = await Category.findOne({ _id: id }).lean();
+            if (returnedCategory) {
+                returnedCategory.pois = await poiStore.getPOIByCategoryId(returnedCategory.id);
             }
-            return returnedcategory;
+            return returnedCategory;
         }
         return null;
     },
