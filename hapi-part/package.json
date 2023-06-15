@@ -10,14 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/David-Trieu/kasd-assignment.git"
+    "url": "https://github.com/David-Trieu/kasd-assignment-with-svelte.git"
   },
   "author": "David Trieu",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/David-Trieu/kasd-assignment/issues"
-  },
-  "homepage": "https://github.com/David-Trieu/kasd-assignment#readme",
   "devDependencies": {
     "chai": "^4.3.7",
     "eslint": "^8.40.0",
