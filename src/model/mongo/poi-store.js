@@ -8,7 +8,7 @@ export const poiStore = {
     },
     async getPOIByCategoryId(id){
         if (id) {
-            const POIByCategoryId = await POI.findOne({ CategoryId: id }).lean();
+            const POIByCategoryId = await POI.find({ categoryId: id }).lean();
             return POIByCategoryId;
         }
         return null;

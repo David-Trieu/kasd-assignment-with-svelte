@@ -16,6 +16,16 @@ export const overviewController = {
 
         },
     },
+    getPOIByCategory:{
+        handler: async function (request, h) {
+            const showpois = await db.poiStore.getPOIByCategoryId(request.params.id);
+            const viewData={
+                poi: showpois,
+            }
+            return h.view("poi-by-category-page", viewData);
+
+        },
+    },
     addPOI:{
         validate: {
             payload: POILocationSpec,
@@ -27,7 +37,6 @@ export const overviewController = {
         handler: async function (request, h) {
             const  loggedInUser = request.auth.credentials;
             const category = await db.categoryStore.getCategoryById(request.payload.category);
-            console.log(category);
             const newPOI = {
                 createdBy: loggedInUser._id,
                 name: request.payload.name,
@@ -39,7 +48,6 @@ export const overviewController = {
                 categoryId: request.payload.category,
                 categoryName: category.name,
             }
-            console.log(newPOI);
             await db.poiStore.addPOI(loggedInUser._id,newPOI);
             return h.redirect("/overview")
         },

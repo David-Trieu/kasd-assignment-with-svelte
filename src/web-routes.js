@@ -24,6 +24,7 @@ export const webRoutes = [
     { method: "GET", path: "/admin/deleteuser/{id}", config: adminController.deleteUser },
 
     { method: "GET", path: "/category", config: categoryController.index },
+    { method: "GET", path: "/category/{id}", config: overviewController.getPOIByCategory },
     { method: "POST", path: "/category/addcategory", config: categoryController.addCategory },
     { method: "GET", path: "/category/deletecategory/{id}", config: categoryController.deleteCategory },
 
