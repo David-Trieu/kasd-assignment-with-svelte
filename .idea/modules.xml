@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../Projekt/.idea/Projekt.iml" filepath="$PROJECT_DIR$/../Projekt/.idea/Projekt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../KASD/donation-svelte-0.7.0/.idea/donation-svelte-0.7.0.iml" filepath="$PROJECT_DIR$/../KASD/donation-svelte-0.7.0/.idea/donation-svelte-0.7.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/kasd-assignment.iml" filepath="$PROJECT_DIR$/.idea/kasd-assignment.iml" />
       <module fileurl="file://$PROJECT_DIR$/../KASD/playtime-0.10.0/.idea/playtime-0.10.0.iml" filepath="$PROJECT_DIR$/../KASD/playtime-0.10.0/.idea/playtime-0.10.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/../KASD/playtime-0.7.0/.idea/playtime-0.7.0.iml" filepath="$PROJECT_DIR$/../KASD/playtime-0.7.0/.idea/playtime-0.7.0.iml" />
