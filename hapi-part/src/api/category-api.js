@@ -12,6 +12,9 @@ export const categoryApi = {
                 return Boom.serverUnavailable("Database Error");
             }
         },
+        tags: ["api"],
+        description: "Get all categories",
+        notes: "Returns all categories",
     },
 
     findOne: {

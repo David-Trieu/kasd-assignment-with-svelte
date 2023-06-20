@@ -1,6 +1,6 @@
 <script>
     import { beforeUpdate } from "svelte";
-    import {placemarkService} from "../service/placemarkService";
+    import {placemarkService} from "../services/placemarkService";
     beforeUpdate(() => {
         placemarkService.reload();
     });

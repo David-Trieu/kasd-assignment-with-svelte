@@ -85,4 +85,5 @@ export const poiApi = {
         tags: ["api"],
         description: "Delete all points of interest",
     },
+
 };

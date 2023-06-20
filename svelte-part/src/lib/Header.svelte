@@ -3,7 +3,7 @@
 </script>
 
 <div class="columns is-vcentered">
-    <div class="column is-two-thirds">
+    <div class="column ">
         <TitleBar title={'Placemark GmbH'} subTitle={'We show you interesting parts of the world'} />
     </div>
     <div class="column">
