@@ -17,13 +17,13 @@
 <div class="columns is-vcentered">
     <div class="column">
         <div class="title">
-            Name: {poi.name}
+            {poi.name}
         </div>
         <div class="title">
-            Description: {poi.description}
+            {poi.description}
         </div>
         <div class="title">
-            Latitude: {poi.location.latitude}, Longitude: {poi.location.longitude}
+            Location: {poi.location.latitude}, {poi.location.longitude}
         </div>
         <div class="title">
             Category: {poi.categoryName}
