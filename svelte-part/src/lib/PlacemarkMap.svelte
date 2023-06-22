@@ -12,9 +12,11 @@
         minZoom: 1
     };
     let map
+    export let mapName
+    export let layer
 
     onMount(async () => {
-        map = new LeafletMap("placemark-map", mapConfig);
+        map = new LeafletMap(mapName, mapConfig, layer);
         map.showZoomControl();
         map.addLayerGroup("Point of interest");
         map.showLayerControl();
@@ -39,4 +41,4 @@
 
 </script>
 
-<div class="box" id="placemark-map" style="height:75vh" />
+<div class="box" id={mapName} style="height:75vh"></div>

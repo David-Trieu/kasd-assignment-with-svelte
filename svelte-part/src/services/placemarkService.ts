@@ -91,7 +91,7 @@ export const placemarkService = {
     },
     async getPOIById(id) {
         try {
-            const response = await axios.get(this.baseUrl + "/api/pois/" + id);
+            const response = await axios.get(`${this.baseUrl}/api/pois/${id}`);
             return response.data;
         } catch (error) {
             return [];
