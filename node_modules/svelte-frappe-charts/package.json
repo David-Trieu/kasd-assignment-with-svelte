@@ -1,0 +1,61 @@
+{
+  "name": "svelte-frappe-charts",
+  "version": "1.10.0",
+  "description": "📈 Svelte bindings for frappe-charts",
+  "scripts": {
+    "build": "rollup -c -m --bundleConfigAsCjs",
+    "prepublishOnly": "npm run build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "release": "np --no-yarn"
+  },
+  "dependencies": {
+    "frappe-charts": "^1.6.2",
+    "svelte": "^3.53.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^23.0.2",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/svelte": "^3.2.2",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
+    "jest-transform-svelte": "^2.1.1",
+    "np": "^7.6.2",
+    "rollup": "^3.4.0",
+    "rollup-plugin-svelte": "^7.1.0"
+  },
+  "peerDependencies": {
+    "svelte": "^3.0.0"
+  },
+  "module": "lib/index.mjs",
+  "main": "lib/index.js",
+  "svelte": "src/index.js",
+  "files": [
+    "src/",
+    "!src/__tests__/**/*",
+    "!src/__fixtures__/**/*",
+    "lib/"
+  ],
+  "keywords": [
+    "svelte",
+    "frappe-charts",
+    "svelte-component",
+    "svg-charts",
+    "charting-library",
+    "charts"
+  ],
+  "author": {
+    "email": "d@velunny.com",
+    "name": "himynameisdave",
+    "url": "http://himynameisdave.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/himynameisdave/svelte-frappe-charts.git"
+  },
+  "homepage": "https://github.com/himynameisdave/svelte-frappe-charts#readme",
+  "license": "MIT",
+  "sideEffects": false,
+  "private": false
+}
