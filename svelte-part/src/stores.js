@@ -5,3 +5,4 @@ export const loggedInUser = writable({
     token: "",
     _id: ""
 });
+export const latestPOI = writable(null);

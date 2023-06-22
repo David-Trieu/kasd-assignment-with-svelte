@@ -26,7 +26,7 @@ export const POISpec= Joi.object()
         name: Joi.string().required().example("asdsaddsa"),
         description: Joi.string().required().allow("").example("fdgfggffdgfgd"),
         categoryName: Joi.string().allow(""),
-        category:IdSpec,
+        categoryId: IdSpec,
         createdBy: IdSpec,
         img: Joi.string().optional(),
     })
