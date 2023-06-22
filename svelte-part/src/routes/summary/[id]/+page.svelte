@@ -4,7 +4,6 @@
     import Navigator from "$lib/Navigator.svelte";
     import {placemarkService} from "../../../services/placemarkService";
     import {onMount} from "svelte";
-    import POIInfo from "$lib/POIInfo.svelte";
     export let data
 
     let poi

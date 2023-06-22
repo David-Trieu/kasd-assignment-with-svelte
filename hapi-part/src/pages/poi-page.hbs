@@ -1,29 +1,33 @@
 {{> menu}}
 <section class="section columns is-vcentered">
     <div class="column">
-        <div class="name title">
-            {{poi.name}}
-        </div>
-        <div>
+
+        <div class="column is-box">
+            <div class="name title">
+                {{poi.name}}
+            </div>
             <div>
-                <p >Description: </p>
                 <p >{{poi.description}}</p>
+
             </div>
             <div>
-                <p >Latitude: </p>
-                <p >{{poi.location.latitude}}</p>
+                <p >Latitude: {{poi.location.latitude}}</p>
+
             </div>
             <div>
-                <p >Longitude: </p>
-                <p >{{poi.location.longitude}}</p>
+                <p >Longitude: {{poi.location.longitude}}</p>
+
             </div>
             <div>
-                <p >Category: </p>
-                <p >{{poi.categoryName}}</p>
+                <p >Category: {{poi.categoryName}}</p>
+
             </div>
         </div>
+
+
+        {{> change-poi}}
     </div>
-    <div class="column">
+    <div class="column is half">
         {{> poi-image}}
     </div>
 
