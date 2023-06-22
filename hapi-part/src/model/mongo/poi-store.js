@@ -43,10 +43,16 @@ export const poiStore = {
     async deleteAllPOIs() {
         await POI.deleteMany({});
     },
-    async updatePOI(updatedPOI) {
-        const changePOI = await POI.findOne({_id: updatedPOI._id});
-        changePOI.title = updatedPOI.title;
-        changePOI.img = updatedPOI.img;
+    async updatePOI(oldPOI, updatedPOI) {
+        const changePOI = await POI.findOne({_id: oldPOI._id});
+        changePOI.name = updatedPOI.name
+        changePOI.description = updatedPOI.description
+        changePOI.location.latitude = updatedPOI.location.latitude
+        changePOI.location.longitude = updatedPOI.location.longitude
+        changePOI.img = updatedPOI.img
+        changePOI.categoryId = updatedPOI.categoryId
+        changePOI.categoryName = updatedPOI.categoryName
+        changePOI.createdBy = updatedPOI.createdBy
         await changePOI.save();
     },
 

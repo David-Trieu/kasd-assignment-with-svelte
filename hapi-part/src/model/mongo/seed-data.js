@@ -78,7 +78,7 @@ export const seedData = {
         longitude:"0"
       },
       description:"Null Island is the point on Earth's surface at zero degrees latitude and zero degrees longitude",
-      img: "",
+      img: "https://res.cloudinary.com/ddroz5jsw/image/upload/v1687438954/70c1f87d95fe5ec661_PIRATA_w1aewr.jpg",
       categoryId: "->categories.cat7",
       categoryName: "->categories.cat7.name",
       createdBy: "->users.Admin",
