@@ -26,9 +26,7 @@ export const poiApi = {
     },
 
     findOne: {
-        auth: {
-            strategy: "jwt",
-        },
+        auth: false,
         handler: async function(request, h) {
             try {
                 const poi = await db.poiStore.getPOIById(request.params.id);
@@ -44,7 +42,7 @@ export const poiApi = {
         description: "Get one point of interest",
         notes: "Returns one point of interest",
         validate: { params: { id: IdSpec }, failAction: validationError },
-        response: { schema: POISpecPlusLocation, failAction: validationError },
+        //response: { schema: POISpecPlusLocation, failAction: validationError },
     },
 
     create: {
