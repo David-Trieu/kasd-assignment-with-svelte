@@ -10,9 +10,10 @@
     <a href="/explore" class="column is-2.5">
         <i class="fas fa-th-list fa-3x" style="color:rgb(63, 122, 139)" />
     </a>
-    <a href="/stats" class="column is-2.5">
-        <i class="fa-solid fa-chart-pie"></i>
+    <a href="/charts" class="column is-2 mx-2">
+        <i class="fas fa-chart-line fa-3x" style="color:rgb(149, 93, 176)" />
     </a>
+
     <a href="/logout" class="column is-2.5">
         <i class="fas fa-sign-out-alt fa-3x" style="color:rgb(156, 70, 128)" />
     </a>
