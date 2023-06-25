@@ -6,3 +6,4 @@ export const loggedInUser = writable({
     _id: ""
 });
 export const latestPOI = writable(null);
+export const latestChart = writable(null);

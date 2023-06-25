@@ -57,7 +57,7 @@ export const overviewController = {
             const  loggedInUser = request.auth.credentials;
             const user = await db.userStore.getUserById(loggedInUser._id);
             const POI = await db.poiStore.getPOIById(request.params.id);
-            if(user.hasAdminRights){
+            if(user.hasAdminRights||user._id == POI.createdBy){
                 await db.poiStore.deletePOIById(POI._id);
                 return h.redirect("/overview");
             }
