@@ -78,7 +78,6 @@ export const placemarkService = {
         const placemarkCredentials = localStorage.placemark;
         if(placemarkCredentials){
             try{
-                const savedUser = JSON.parse(placemarkCredentials);
                 const response = await axios.post(`${this.baseUrl}/api/users/pois`, poi);
                 latestPOI.set(poi);
                 return response.status == 200;
@@ -88,6 +87,30 @@ export const placemarkService = {
             }
         }
 
+    },
+    async alterPOI(poi){
+        const placemarkCredentials = localStorage.placemark;
+        if(placemarkCredentials){
+            try{
+                const response = await axios.post(`${this.baseUrl}/api/pois/${poi._id}/update`, poi);
+                return response.status == 200;
+            }
+            catch (error){
+                return false;
+            }
+        }
+    },
+    async deletePOI(poi){
+        const placemarkCredentials = localStorage.placemark;
+        if(placemarkCredentials){
+            try{
+                const response = await axios.delete(`${this.baseUrl}/api/pois/${poi._id}/delete`);
+                return response.status == 200;
+            }
+            catch (error){
+                return false;
+            }
+        }
     },
     async getPOIById(id) {
         try {
@@ -113,7 +136,14 @@ export const placemarkService = {
             return [];
         }
     },
-
+    async getAllImages() {
+        try {
+            const response = await axios.get(this.baseUrl + "/api/images");
+            return response.data;
+        } catch (error) {
+            return [];
+        }
+    },
 
 
 };

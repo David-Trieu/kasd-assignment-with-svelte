@@ -2,12 +2,10 @@
 
     import Header from '$lib/Header.svelte';
     import Navigator from "$lib/Navigator.svelte";
-    import {placemarkService} from "../../../services/placemarkService";
-    import {onMount} from "svelte";
+    import AlterPOI from "$lib/AlterPOI.svelte";
     export let data
 
     let poi
-    console.log(data)
     poi = data.poi
 </script>
 <Header>
@@ -29,11 +27,15 @@
             Category: {poi.categoryName}
         </div>
     </div>
-    <div class="column box has-text-centered">
+    <div class="column"><AlterPOI {data}/></div>
+</div>
+
+<div class="column is-half is-centered">
+    {#each poi.img as img}
         <figure class="image is-256x256">
-            <img src={poi.img} alt="">
+            <img src={img} alt="">
         </figure>
-    </div>
+    {/each}
 </div>
 
 

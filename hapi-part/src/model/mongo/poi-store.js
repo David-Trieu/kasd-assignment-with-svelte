@@ -20,13 +20,6 @@ export const poiStore = {
         }
         return null;
     },
-    async getPOICreatedById(id) {
-        if (id) {
-            const POIByUserId = await POI.findOne({ createdById: id }).lean();
-            return POIByUserId;
-        }
-        return null;
-    },
     async addPOI(userid, inputPoi) {
         inputPoi.createdBy = userid;
         const newPOI = new POI(inputPoi);
@@ -55,5 +48,6 @@ export const poiStore = {
         changePOI.createdBy = updatedPOI.createdBy
         await changePOI.save();
     },
+
 
 };

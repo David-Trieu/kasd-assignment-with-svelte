@@ -22,7 +22,7 @@
 <div class="columns is-vcentered">
     <div class="column has-text-centered">
         <h1>For reference</h1>
-        <PlacemarkMap mapName="BasicMap"/>
+        <PlacemarkMap mapName="BasicMap" />
         <h1>For travel</h1>
         <PlacemarkMap mapName="BasicMap2", layer="OPNV"/>
     </div>

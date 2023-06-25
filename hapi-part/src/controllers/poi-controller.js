@@ -23,7 +23,7 @@ export const poiController = {
                 const file = request.payload.imagefile;
                 if (Object.keys(file).length > 0) {
                     const url = await imageStore.uploadImage(request.payload.imagefile);
-                    poi.img = url;
+                    poi.img.push(url);
                     await db.poiStore.updatePOI(oldpoi,poi);
                 }
                 return h.redirect(`/poi/${poi._id}`);

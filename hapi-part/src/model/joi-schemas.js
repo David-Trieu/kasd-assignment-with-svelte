@@ -29,7 +29,7 @@ export const POISpec= Joi.object()
         category: Joi.any().optional(),
         categoryId: IdSpec,
         createdBy: IdSpec,
-        img: Joi.string().optional(),
+        img: Joi.array().optional(),
     })
 export const POISpecPlusLocation = POISpec.keys({
     _id: IdSpec,
