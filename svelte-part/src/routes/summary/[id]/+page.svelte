@@ -22,9 +22,12 @@
             }
         }
     }
-    async function uploadImages() {
-        await placemarkService.uploadImages(poi._id, files);
-        console.log(files);
+    async function uploadImage() {
+        await placemarkService.uploadImage(poi._id, files);
+        await goto("/explore");
+    }
+    async function deleteImage(){
+        await placemarkService.deleteImage(poi._id);
         await goto("/explore");
     }
 
@@ -58,19 +61,19 @@
     <div class="column is-half">
         <div class="card">
             <div class="card-content">
-                <form on:submit|preventDefault={uploadImages} enctype="multipart/form-data">
+                <form on:submit|preventDefault={uploadImage} enctype="multipart/form-data">
                     <div id="file-select" class="file has-name is-fullwidth">
                         <label class="file-label">
                             <input bind:files on:change={addImages} class="file-input" name="imagefile"
                                    type="file" accept="image/png, image/jpeg">
                             <span class="file-cta">
-            <span class="file-icon">
-              <i class="fas fa-upload"></i>
-            </span>
-            <span class="file-label">
-              Choose a file…
-            </span>
-           </span>
+                                <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                    Choose a file…
+                                </span>
+                            </span>
                             <span class="file-name">{fileName}</span>
                         </label>
                         <button type="submit" class="button is-info">Upload</button>
@@ -78,7 +81,9 @@
                 </form>
             </div>
             <div class="card-content">
-                <a href="/" class="button is-danger" method="GET">Delete</a>
+                <form on:submit|preventDefault={deleteImage}>
+                    <button type="submit" class="button is-danger">Delete All</button>
+                </form>
             </div>
         </div>
         {#each poi.img as img}

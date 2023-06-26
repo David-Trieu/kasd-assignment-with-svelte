@@ -16,7 +16,7 @@ export const imageApi = {
         tags: ["api"],
 
     },
-    uploadimages: {
+    uploadImage: {
         auth: {
             strategy: "jwt",
         },
@@ -41,5 +41,26 @@ export const imageApi = {
             parse: true,
         },
     },
+    deleteImage:{
+        auth:  {
+            strategy: "jwt",
+        },
+        handler: async function(request, h) {
+            try {
+                const loggedInUser = request.auth.credentials;
+                const poi = await db.poiStore.getPOIById(request.params.id);
+                if (loggedInUser.hasAdminRights || poi.createdBy === loggedInUser._id)
+                {
+                    for (let url of poi.img) {
+                        await imageStore.deleteImage(url);
+                    }
+                    await db.poiStore.deleteImage(poi);
+                    return true;
+                }
+            } catch (err) {
+                return Boom.serverUnavailable("Database Error");
+            }
+        },
+    }
 
 }

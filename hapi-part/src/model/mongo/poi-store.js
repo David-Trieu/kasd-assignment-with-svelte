@@ -53,6 +53,11 @@ export const poiStore = {
         const newpoi = await POI.findOne({ _id: poi._id });
         newpoi.img.push(img);
         await newpoi.save();
+    },
+    async deleteImage(poi){
+        const newpoi = await POI.findOne({ _id: poi._id });
+        newpoi.img = [];
+        await newpoi.save();
     }
 }
 

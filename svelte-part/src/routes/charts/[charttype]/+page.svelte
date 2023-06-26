@@ -1,7 +1,7 @@
 <script>
     import Header from "$lib/Header.svelte";
     import Chart from "svelte-frappe-charts";
-    import { onMount } from "svelte";
+    import {afterUpdate, beforeUpdate, onMount} from "svelte";
     import {placemarkService} from "../../../services/placemarkService.ts";
     import Navigator from "$lib/Navigator.svelte";
     import {latestChart} from "../../../stores.js";
