@@ -17,6 +17,7 @@ export const apiRoutes = [
     { method: "POST", path: "/api/pois/{id}/update", config: poiApi.updatePOI },
 
     { method: "GET", path: "/api/images", config: imageApi.find},
+    { method: "POST", path: "/api/images/{id}/upload", config: imageApi.uploadimages },
 
 
     { method: "GET", path: "/api/categories", config: categoryApi.find },

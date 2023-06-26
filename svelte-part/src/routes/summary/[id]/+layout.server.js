@@ -7,7 +7,7 @@ export const load = async ({ params }) => {
     return {
         id: params.id,
         poi: result,
-        category: categories
+        category: categories,
     }
 
 }

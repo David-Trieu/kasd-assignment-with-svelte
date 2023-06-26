@@ -24,7 +24,6 @@ export const placemarkService = {
             return false;
         }
     },
-
     async logout() {
         loggedInUser.set({
             email: "",
@@ -34,7 +33,6 @@ export const placemarkService = {
         axios.defaults.headers.common["Authorization"] = "";
         localStorage.removeItem("placemark");
     },
-
     async signup(userName: string,  email: string, password: string): Promise<boolean> {
         try {
             const userDetails = {
@@ -48,8 +46,22 @@ export const placemarkService = {
             return false;
         }
     },
-
-
+    async getUser(id){
+        try {
+            const response = await axios.get(`${this.baseUrl}/api/users/${id}`);
+            return response.data;
+        } catch (error) {
+            return error;
+        }
+    },
+    async getAllUser(){
+        try {
+            const response = await axios.get(`${this.baseUrl}/api/users`);
+            return response.data;
+        } catch (error) {
+            return [];
+        }
+    },
     reload() {
         if (!axios.defaults.headers.common["Authorization"]) {
             const placemarkCredentials = localStorage.placemark;
@@ -58,7 +70,7 @@ export const placemarkService = {
                 loggedInUser.set({
                     email: savedUser.email,
                     token: savedUser.token,
-                    _id: savedUser._id
+                    _id: savedUser.id
                 });
                 axios.defaults.headers.common["Authorization"] = "Bearer " + savedUser.token;
             }
@@ -73,44 +85,34 @@ export const placemarkService = {
             return [];
         }
     },
-
     async addPOI(poi){
-        const placemarkCredentials = localStorage.placemark;
-        if(placemarkCredentials){
-            try{
-                const response = await axios.post(`${this.baseUrl}/api/users/pois`, poi);
-                latestPOI.set(poi);
-                return response.status == 200;
-            }
-            catch (error){
-                return false;
-            }
+        try{
+            const response = await axios.post(`${this.baseUrl}/api/users/pois`, poi);
+            latestPOI.set(poi);
+            return response.status == 200;
         }
-
+        catch (error){
+            return false;
+        }
     },
     async alterPOI(poi){
-        const placemarkCredentials = localStorage.placemark;
-        if(placemarkCredentials){
-            try{
-                const response = await axios.post(`${this.baseUrl}/api/pois/${poi._id}/update`, poi);
-                return response.status == 200;
-            }
-            catch (error){
-                return false;
-            }
+        try{
+            const response = await axios.post(`${this.baseUrl}/api/pois/${poi._id}/update`, poi);
+            return response.status == 200;
+        }
+        catch (error){
+            return false;
         }
     },
     async deletePOI(poi){
-        const placemarkCredentials = localStorage.placemark;
-        if(placemarkCredentials){
-            try{
-                const response = await axios.delete(`${this.baseUrl}/api/pois/${poi._id}/delete`);
-                return response.status == 200;
-            }
-            catch (error){
-                return false;
-            }
+        try{
+            const response = await axios.delete(`${this.baseUrl}/api/pois/${poi._id}/delete`);
+            return response.status == 200;
         }
+        catch (error){
+            return false;
+        }
+
     },
     async getPOIById(id) {
         try {
@@ -144,6 +146,14 @@ export const placemarkService = {
             return [];
         }
     },
+    async uploadImages(id, imagefile){
+        try {
+            const response = await axios.post(`${this.baseUrl}/api/images/${id}/upload`, imagefile);
+            return response.data;
+        } catch (error) {
+            return false;
+        }
+    }
 
 
 };

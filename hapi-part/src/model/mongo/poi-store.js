@@ -28,6 +28,7 @@ export const poiStore = {
     },
     async deletePOIById(id) {
         try {
+            console.log("hi")
             await POI.deleteOne({ _id: id });
         } catch (error) {
             console.log("bad id");
@@ -48,6 +49,12 @@ export const poiStore = {
         changePOI.createdBy = updatedPOI.createdBy
         await changePOI.save();
     },
+    async uploadImage(poi, img){
+        const newpoi = await POI.findOne({ _id: poi._id });
+        newpoi.img.push(img);
+        await newpoi.save();
+    }
+}
 
 
-};
+;

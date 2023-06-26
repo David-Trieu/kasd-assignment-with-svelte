@@ -15,5 +15,31 @@ export const imageApi = {
         },
         tags: ["api"],
 
-    }
+    },
+    uploadimages: {
+        auth: {
+            strategy: "jwt",
+        },
+        handler: async function (request, h) {
+            try {
+                const poi = await db.poiStore.getPOIById(request.params.id);
+                const file = Object.values(request.payload)[0];
+                if (Object.keys(file).length > 0) {
+                    const url = await imageStore.uploadImage(file);
+                    await db.poiStore.uploadImage(poi, url);
+                }
+                return true;
+            } catch (err) {
+                console.log(err);
+                return false;
+            }
+        },
+        payload: {
+            multipart: true,
+            output: "data",
+            maxBytes: 209715200,
+            parse: true,
+        },
+    },
+
 }
