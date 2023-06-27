@@ -62,26 +62,24 @@
             <div class="column">
                 <div class="select">
                     <select bind:value={charttype} id="charttype">
-                        <option value=pie>Pie</option>
                         <option value=bar>Bar</option>
+                        <option value=pie>Pie</option>
                         <option value=percentage>Percentage</option>
                     </select>
                 </div>
             </div>
-            <div class="column">
                 <div class="control">
-                    <button class="button is-link is-light">Change Charttype</button>
+                    <button class="button is-link is-info">Change Charttype</button>
                 </div>
-            </div>
         </div>
     </form>
 </div>
+<div class="columns">
+    <div class="column box has-text-centered">
+        <h1 class="title is-4">Category Analysis</h1>
+        <Chart {data} type=pie />
+        <h1 class="title is-4">Users: {usercount}</h1>
+    </div>
+</div>
 
-<div class="column box has-text-centered">
-    <h1 class="title is-4">Category Analysis</h1>
-    <Chart {data} type=pie />
-</div>
-<div class="column box has-text-centered">
-    <h1 class="title is-4">Users: {usercount}</h1>
-</div>
 

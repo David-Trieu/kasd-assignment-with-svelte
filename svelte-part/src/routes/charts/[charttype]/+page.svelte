@@ -44,6 +44,9 @@
     <Navigator />
 </Header>
 <div class="columns">
+    <a class="button is-info" href="/charts">Back to Selection</a>
+</div>
+<div class="columns">
     <div class="column box has-text-centered">
         <h1 class="title is-4">Category Analysis</h1>
         <Chart {data} type={$latestChart} />
