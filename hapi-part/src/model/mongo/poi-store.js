@@ -28,7 +28,6 @@ export const poiStore = {
     },
     async deletePOIById(id) {
         try {
-            console.log("hi")
             await POI.deleteOne({ _id: id });
         } catch (error) {
             console.log("bad id");

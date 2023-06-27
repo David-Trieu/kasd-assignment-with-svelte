@@ -23,7 +23,8 @@
         map.showLayerControl();
         const pois = await placemarkService.getAllPOIS();
         pois.forEach((poi) => {
-            map.addMarker({ lat: poi.location.latitude, lng: poi.location.longitude },poi.name, "POI", poi._id);
+            let poiStr = `${poi.name} <br> ${poi.description} <br>${poi.categoryName}`
+            map.addMarker({ lat: poi.location.latitude, lng: poi.location.longitude },poiStr, "POI", poi._id);
         });
         map.moveTo(2, { lat: 49, lng: 12 });
     });
@@ -31,7 +32,8 @@
 
     latestPOI.subscribe(async (poi) => {
         if (poi && map) {
-           await map.addMarker({ lat: poi.location.latitude, lng: poi.location.longitude },poi.name, "POI", poi._id);
+            let poiStr = `${poi.name} <br> ${poi.description} <br> Category ${poi.categoryName}`
+           await map.addMarker({ lat: poi.location.latitude, lng: poi.location.longitude },poiStr, "POI", poi._id);
            await map.moveTo(8, { lat: poi.location.latitude, lng: poi.location.longitude });
         }
     });

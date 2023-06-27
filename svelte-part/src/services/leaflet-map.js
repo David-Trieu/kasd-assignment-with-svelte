@@ -99,7 +99,7 @@ export class LeafletMap {
         if (popupText) {
             var popup = L.popup({ autoClose: false, closeOnClick: false });
             var conditions;
-            const requestUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${location.lat}&lon=${location.lng}&units=metric&appid=${apiKey}`;
+            const requestUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lng}&units=metric&appid=${apiKey}`;
             await fetch(requestUrl, {
                 mode: 'cors'
             })
@@ -108,7 +108,7 @@ export class LeafletMap {
                 })
                 .then((data) => {
                     conditions = data;});
-            popup.setContent(popupText  + "<br>Weather: " + conditions.current.weather[0].main  + "<br><a class='button' href='/summary/"+id +"'>Explore</a>" );
+            popup.setContent(popupText  + "<br>Weather: " + conditions.weather[0].main + "<br>Temperature: "+ conditions.main.temp + "°C" +"<br><a class='button' href='/summary/"+id +"'>Explore</a>" );
             marker.bindPopup(popup);
         }
         if (!this.overlays[layerTitle]) {

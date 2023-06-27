@@ -83,7 +83,6 @@ export const seedData = {
         longitude:"0"
       },
       description:"Null Island is the point on Earth's surface at zero degrees latitude and zero degrees longitude",
-      img: "",
       categoryId: "->categories.cat7",
       categoryName: "->categories.cat7.name",
       createdBy: "->users.Admin",
@@ -95,7 +94,6 @@ export const seedData = {
         longitude:"12.1016"
       },
       description:"Regensburg is a German city located in Bavaria.",
-      img: "",
       categoryId: "->categories.cat9",
       categoryName: "->categories.cat9.name",
       createdBy: "->users.David",
@@ -107,7 +105,6 @@ export const seedData = {
         longitude:"2.2944"
       },
       description:"The Eiffel Tower is a famous monument in Paris.",
-      img: "",
       categoryId: "->categories.cat2",
       categoryName: "->categories.cat2.name",
       createdBy: "->users.Mona",

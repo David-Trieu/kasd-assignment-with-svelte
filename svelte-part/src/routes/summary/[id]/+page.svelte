@@ -5,14 +5,17 @@
     import AlterPOI from "$lib/AlterPOI.svelte";
     import {placemarkService} from "../../../services/placemarkService";
     import {goto} from "$app/navigation";
+    import {onMount} from "svelte";
 
     export let data
+    const apiKey = import.meta.env.VITE_OPWAPI
 
     let poi;
     poi = data.poi;
 
     let fileName = "";
     let files;
+    let conditions;
 
     async function addImages() {
         fileName = "";
@@ -30,6 +33,18 @@
         await placemarkService.deleteImage(poi._id);
         await goto("/explore");
     }
+    onMount(async () => {
+        const requestUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${poi.location.latitude}&lon=${poi.location.longitude}&units=metric&appid=${apiKey}` ;
+        await fetch(requestUrl, {
+            mode: 'cors'
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                conditions = data;
+            });
+    });
 
 </script>
 <Header>
@@ -50,9 +65,15 @@
         <div class="subtitle">
             Category: {poi.categoryName}
         </div>
+        <div class="subtitle">
+            Weather: {conditions?.weather[0]?.main}
+        </div>
+        <div class="subtitle">
+            Temperature: {conditions?.main?.temp} °C
+        </div>
     </div>
     {#if 1}
-        <div className="column">
+        <div class="column">
             <AlterPOI {data}/>
         </div>
     {/if}
