@@ -6,9 +6,10 @@
     import Navigator from "$lib/Navigator.svelte";
     import {goto} from "$app/navigation";
     import {latestChart} from "../../stores.ts";
-    import type {Category, POI} from "../../services/placemark-types";
+    import type {Category, POI, User} from "../../services/placemark-types";
 
     let charttype: string;
+    let usercount: number;
 
     let data = {
         labels: [],
@@ -18,6 +19,9 @@
             }
         ]
     };
+    function countUser(users: User[]) {
+        usercount = users.length;
+    }
     function populateByCategory(pois: POI[],categories: Category[]){
         categories.forEach((category: Category) => {
             data.labels.push(`${category.name}`);
@@ -33,9 +37,11 @@
         });
     }
     async function refreshChart(){
-        let pois = await placemarkService.getAllPOIS();
-        let categories = await placemarkService.getAllCategories();
+        let pois: POI[] = await placemarkService.getAllPOIS();
+        let categories: Category[] = await placemarkService.getAllCategories();
+        let users: User[] = await placemarkService.getAllUser();
         populateByCategory(pois,categories);
+        countUser(users);
     }
     onMount(async () => {
         placemarkService.reload();
@@ -70,9 +76,12 @@
         </div>
     </form>
 </div>
-<div class="columns">
-    <div class="column box has-text-centered">
-        <h1 class="title is-4">Category Analysis</h1>
-        <Chart {data} type=pie />
-    </div>
+
+<div class="column box has-text-centered">
+    <h1 class="title is-4">Category Analysis</h1>
+    <Chart {data} type=pie />
 </div>
+<div class="column box has-text-centered">
+    <h1 class="title is-4">Users: {usercount}</h1>
+</div>
+
