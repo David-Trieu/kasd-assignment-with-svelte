@@ -4,7 +4,7 @@ import type {Category, inputPOI, outputPOI, POI, User} from "./placemark-types.t
 
 
 export const placemarkService = {
-    baseUrl: "http://localhost:3000",
+    baseUrl: "https://placemark-1hh1.onrender.com",
 
     async login(email: string, password: string): Promise<boolean> {
         try {
