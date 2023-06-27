@@ -4,9 +4,10 @@
 
 <table class="table is-fullwidth">
     <thead>
-    <th>Name</th>
-    <th>Category</th>
+    <th>Name:</th>
+    <th>Category:</th>
     <th>Explore</th>
+    <th>Delete</th>
     </thead>
     <tbody>
     {#each pois as poi}
@@ -18,8 +19,9 @@
                 {poi.categoryName}
             </td>
             <td>
-                <a href="/summary/{poi._id}" class="button">EXPLORE</a>
+                <a href="/summary/{poi._id}" class="button is-info">Explore</a>
             </td>
+            <td><a href="/summary/{poi._id}/delete" class="button is-danger">Delete</a></td>
         </tr>
     {/each}
     </tbody>

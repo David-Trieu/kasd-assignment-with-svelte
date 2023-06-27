@@ -25,9 +25,7 @@ export const userApi = {
     },
 
     findOne: {
-        auth: {
-            strategy: "jwt",
-        },
+        auth: false,
 
         handler: async function(request, h) {
             try {

@@ -1,12 +1,10 @@
 <script>
     import Header from "$lib/Header.svelte";
     import Chart from "svelte-frappe-charts";
-    import { onMount } from "svelte";
+    import {afterUpdate, beforeUpdate, onMount} from "svelte";
     import {placemarkService} from "../../../services/placemarkService.ts";
     import Navigator from "$lib/Navigator.svelte";
     import {latestChart} from "../../../stores.js";
-
-
 
     let data = {
         labels: [],
@@ -24,7 +22,7 @@
         categories.forEach((category, i) =>  {
             data.datasets[0].values[i] = 0;
             pois.forEach((poi) => {
-                if (poi.categoryId == category._id) {
+                if (poi.categoryId === category._id) {
                     data.datasets[0].values[i] += 1;
                 }
             });
@@ -36,7 +34,6 @@
         populateByCategory(pois,categories);
     }
     onMount(async () => {
-        placemarkService.reload();
         await refreshChart();
     });
 
