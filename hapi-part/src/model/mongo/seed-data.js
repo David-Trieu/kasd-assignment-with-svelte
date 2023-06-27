@@ -83,7 +83,7 @@ export const seedData = {
         longitude:"0"
       },
       description:"Null Island is the point on Earth's surface at zero degrees latitude and zero degrees longitude",
-      img: "https://res.cloudinary.com/ddroz5jsw/image/upload/v1687438954/70c1f87d95fe5ec661_PIRATA_w1aewr.jpg",
+      img: "",
       categoryId: "->categories.cat7",
       categoryName: "->categories.cat7.name",
       createdBy: "->users.Admin",
@@ -95,7 +95,7 @@ export const seedData = {
         longitude:"12.1016"
       },
       description:"Regensburg is a German city located in Bavaria.",
-      img: "https://res.cloudinary.com/ddroz5jsw/image/upload/v1687444133/regensburg-germany-things-to-do_llt8s1.jpg",
+      img: "",
       categoryId: "->categories.cat9",
       categoryName: "->categories.cat9.name",
       createdBy: "->users.David",
@@ -107,7 +107,7 @@ export const seedData = {
         longitude:"2.2944"
       },
       description:"The Eiffel Tower is a famous monument in Paris.",
-      img: "https://res.cloudinary.com/ddroz5jsw/image/upload/v1687444182/square-1463674076-eiffel-tower-paris_u1cevc.jpg",
+      img: "",
       categoryId: "->categories.cat2",
       categoryName: "->categories.cat2.name",
       createdBy: "->users.Mona",
