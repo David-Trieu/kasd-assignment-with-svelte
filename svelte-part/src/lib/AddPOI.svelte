@@ -11,7 +11,7 @@
 
     let message = "Add a point of interest";
     async function addPlacemark() {
-        if (name && longitude && latitude && selectedCategory) {
+        if (name && selectedCategory) {
             const newPOI = {
                 name: name,
                 description: description,

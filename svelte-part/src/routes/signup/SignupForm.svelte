@@ -22,7 +22,7 @@
 	<div class="field is-horizontal">
 		<div class="field-body">
 			<div class="field">
-				<label for="username" class="label">First Name</label>
+				<label for="username" class="label">User Name</label>
 				<input bind:value={userName} id="username" class="input" type="text" placeholder="Enter user name" name="userName" />
 			</div>
 		</div>
