@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Header from "$lib/Header.svelte";
     import Chart from "svelte-frappe-charts";
     import { onMount } from "svelte";
@@ -6,8 +6,9 @@
     import Navigator from "$lib/Navigator.svelte";
     import {goto} from "$app/navigation";
     import {latestChart} from "../../stores.ts";
+    import type {Category, POI} from "../../services/placemark-types";
 
-    let charttype;
+    let charttype: string;
 
     let data = {
         labels: [],
@@ -17,15 +18,15 @@
             }
         ]
     };
-    function populateByCategory(pois,categories){
-        categories.forEach((category) => {
+    function populateByCategory(pois: POI[],categories: Category[]){
+        categories.forEach((category: Category) => {
             data.labels.push(`${category.name}`);
             data.datasets[0].values.push(0);
         });
-        categories.forEach((category, i) =>  {
+        categories.forEach((category: Category, i: number) =>  {
             data.datasets[0].values[i] = 0;
-            pois.forEach((poi) => {
-                if (poi.categoryId == category._id) {
+            pois.forEach((poi: POI) => {
+                if (poi.categoryId === category._id) {
                     data.datasets[0].values[i] += 1;
                 }
             });

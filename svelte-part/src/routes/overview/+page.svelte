@@ -5,9 +5,10 @@
   import PlacemarkMap from "$lib/PlacemarkMap.svelte";
   import AddPOI from "$lib/AddPOI.svelte";
   import {placemarkService} from "../../services/placemarkService.ts";
+  import type {Category} from "../../services/placemark-types";
 
 
-  let categories;
+  let categories: Category[];
 
   onMount(async () => {
     categories = await placemarkService.getAllCategories();
