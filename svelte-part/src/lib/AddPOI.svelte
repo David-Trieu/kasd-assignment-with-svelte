@@ -2,6 +2,8 @@
     import { placemarkService } from "../services/placemarkService.ts";
     import type {Category} from "../services/placemark-types";
     export let categories: Category[] = [];
+
+
     let name:string = "";
     let description:string = "";
     let longitude:number;

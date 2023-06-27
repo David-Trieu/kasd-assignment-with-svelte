@@ -89,7 +89,7 @@ export const placemarkService = {
     async addPOI(poi: POI){
         try{
             const response = await axios.post(`${this.baseUrl}/api/users/pois`, poi);
-            latestPOI.set(poi);
+            latestPOI.set(response.data);
             return response.status == 200;
         }
         catch (error){
