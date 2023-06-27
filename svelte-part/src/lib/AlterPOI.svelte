@@ -5,7 +5,7 @@
 
     let selectedCategory: Category;
 
-    let message = "Change the placemark";
+    let message:string = "Change the placemark";
     async function alterPlacemark() {
         if (data.poi.name && selectedCategory && data.poi.description) {
             const newPOI = {
