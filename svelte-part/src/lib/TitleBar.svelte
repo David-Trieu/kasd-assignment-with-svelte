@@ -1,6 +1,6 @@
 <script lang="ts">
-    export let title = '';
-    export let subTitle = '';
+    export let title: string = '';
+    export let subTitle: string = '';
 </script>
 
 <div class="box has-text-centered columns m-2">

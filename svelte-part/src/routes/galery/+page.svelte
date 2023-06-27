@@ -5,7 +5,7 @@
     import {onMount} from "svelte";
     import {placemarkService} from "../../services/placemarkService";
 
-    let images = [];
+    let images:string[] = [];
 
     onMount(async () => {
         images = await placemarkService.getAllImages();

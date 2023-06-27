@@ -1,12 +1,13 @@
-<script>
+<script lang="ts">
     import { onMount} from "svelte";
     import Header from '$lib/Header.svelte';
     import Navigator from "$lib/Navigator.svelte";
     import PlacemarkMap from "$lib/PlacemarkMap.svelte";
     import {placemarkService} from "../../services/placemarkService.ts";
+    import type {Category} from "../../services/placemark-types";
 
 
-    let categories;
+    let categories: Category[];
 
     onMount(async () => {
         categories = await placemarkService.getAllCategories();
@@ -15,7 +16,7 @@
 </script>
 
 <Header>
-    <Navigator />
+    <Navigator/>
 </Header>
 
 <div class="columns is-vcentered">

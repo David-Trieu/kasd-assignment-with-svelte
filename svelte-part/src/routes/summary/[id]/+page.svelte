@@ -10,8 +10,8 @@
     export let data
     const apiKey = import.meta.env.VITE_OPWAPI
 
-    let fileName = "";
-    let files;
+    let fileName:string = "";
+    let files: File[];
     let conditions;
 
     async function addImages() {

@@ -1,5 +1,7 @@
 <script lang="ts">
-    export let pois = [];
+    import type {outputPOI} from "../services/placemark-types";
+
+    export let pois: outputPOI[] = [];
 </script>
 
 <table class="table is-fullwidth">

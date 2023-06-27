@@ -1,10 +1,10 @@
 import axios from "axios";
 import { latestPOI,loggedInUser } from "../stores.ts";
-import type {Category, inputPOI, outputPOI, POI, User} from "./placemark-types.ts";
+import type {Category, outputPOI, POI, User} from "./placemark-types.ts";
 
 
 export const placemarkService = {
-    baseUrl: "http://localhost:3000",
+    baseUrl: "https://placemark-1hh1.onrender.com",
 
     async login(email: string, password: string): Promise<boolean> {
         try {
