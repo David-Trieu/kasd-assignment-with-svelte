@@ -73,7 +73,6 @@
 <details>
     <summary><span class="has-text-info">Edit if it is yours</span></summary>
     <div class="column"><AlterPOI {data}/></div>
-
 </details>
 <div class="columns is-centered">
     <div class="column is-half">

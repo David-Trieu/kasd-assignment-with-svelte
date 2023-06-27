@@ -5,7 +5,7 @@
     import {placemarkService} from "../../services/placemarkService.ts";
     import Navigator from "$lib/Navigator.svelte";
     import {goto} from "$app/navigation";
-    import {latestChart} from "../../stores.js";
+    import {latestChart} from "../../stores.ts";
 
     let charttype;
 

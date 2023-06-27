@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
     import Header from "$lib/Header.svelte";
     import Chart from "svelte-frappe-charts";
-    import {afterUpdate, beforeUpdate, onMount} from "svelte";
+    import {onMount} from "svelte";
     import {placemarkService} from "../../../services/placemarkService.ts";
     import Navigator from "$lib/Navigator.svelte";
-    import {latestChart} from "../../../stores.js";
+    import {latestChart} from "../../../stores.ts";
 
     let data = {
         labels: [],
@@ -22,7 +22,7 @@
         categories.forEach((category, i) =>  {
             data.datasets[0].values[i] = 0;
             pois.forEach((poi) => {
-                if (poi.categoryId === category._id) {
+                if (poi.categoryId.equals(category._id)) {
                     data.datasets[0].values[i] += 1;
                 }
             });

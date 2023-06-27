@@ -1,11 +1,12 @@
-<script>
+<script lang="ts">
     import { placemarkService } from "../services/placemarkService.ts";
+    import type {Category} from "../services/placemark-types";
     export let categories = [];
     let name = "";
     let description = "";
-    let longitude = "";
-    let latitude = "";
-    let selectedCategory = "";
+    let longitude = 0;
+    let latitude = 0;
+    let selectedCategory: Category;
 
 
     let message = "Add a point of interest";

@@ -1,19 +1,20 @@
-<script>
+<script lang="ts">
     import "leaflet/dist/leaflet.css";
     import { LeafletMap } from "../services/leaflet-map";
     import { onMount } from "svelte";
     import {placemarkService} from "../services/placemarkService.ts";
-    import {latestPOI} from "../stores.js";
+    import {latestPOI} from "../stores.ts";
+    import type {mapConfig_type} from "../services/placemark-types";
 
 
-    const mapConfig = {
+    const mapConfig: mapConfig_type = {
         location: { lat: 52.160858, lng: -7.15242 },
         zoom: 8,
         minZoom: 1
     };
     let map
-    export let mapName
-    export let layer
+    export let mapName:string
+    export let layer:string
 
 
     onMount(async () => {

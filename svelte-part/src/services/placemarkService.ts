@@ -1,5 +1,6 @@
 import axios from "axios";
-import { latestPOI,loggedInUser } from "../stores";
+import { latestPOI,loggedInUser } from "../stores.ts";
+import type {Category, inputPOI, outputPOI, POI, User} from "./placemark-types.ts";
 
 
 export const placemarkService = {
@@ -46,7 +47,7 @@ export const placemarkService = {
             return false;
         }
     },
-    async getUser(){
+    async getUser(): Promise<User>{
         try {
             const response = await axios.get(`${this.baseUrl}/api/users/one`);
             return response.data;
@@ -54,7 +55,7 @@ export const placemarkService = {
             return error;
         }
     },
-    async getAllUser(){
+    async getAllUser(): Promise<User[]>{
         try {
             const response = await axios.get(`${this.baseUrl}/api/users`);
             return response.data;
@@ -77,7 +78,7 @@ export const placemarkService = {
         }
     },
 
-    async getAllPOIS() {
+    async getAllPOIS(): Promise<outputPOI[]> {
         try {
             const response = await axios.get(this.baseUrl + "/api/pois");
             return response.data;
@@ -85,7 +86,7 @@ export const placemarkService = {
             return [];
         }
     },
-    async addPOI(poi){
+    async addPOI(poi: POI){
         try{
             const response = await axios.post(`${this.baseUrl}/api/users/pois`, poi);
             latestPOI.set(poi);
@@ -95,7 +96,7 @@ export const placemarkService = {
             return false;
         }
     },
-    async alterPOI(poi){
+    async alterPOI(poi: outputPOI){
         try{
             const response = await axios.post(`${this.baseUrl}/api/pois/${poi._id}/update`, poi);
             return response.status == 200;
@@ -104,7 +105,7 @@ export const placemarkService = {
             return false;
         }
     },
-    async deletePOI(poi){
+    async deletePOI(poi: outputPOI){
         try{
             const response = await axios.delete(`${this.baseUrl}/api/pois/${poi._id}/delete`);
             return response.status == 200;
@@ -112,17 +113,16 @@ export const placemarkService = {
         catch (error){
             return false;
         }
-
     },
-    async getPOIById(id) {
+    async getPOIById(id: string): Promise<outputPOI> {
         try {
             const response = await axios.get(`${this.baseUrl}/api/pois/${id}`);
             return response.data;
         } catch (error) {
-            return [];
+            return ;
         }
     },
-    async getAllCategories() {
+    async getAllCategories(): Promise<Category[]> {
         try {
             const response = await axios.get(this.baseUrl + "/api/categories");
             return response.data;
@@ -130,15 +130,15 @@ export const placemarkService = {
             return [];
         }
     },
-    async getCategoryById(id) {
+    async getCategoryById(id: string): Promise<Category> {
         try {
             const response = await axios.get(this.baseUrl + "/api/categories/" + id);
             return response.data;
         } catch (error) {
-            return [];
+            return ;
         }
     },
-    async getAllImages() {
+    async getAllImages(): Promise<string[]> {
         try {
             const response = await axios.get(this.baseUrl + "/api/images");
             return response.data;
@@ -146,7 +146,7 @@ export const placemarkService = {
             return [];
         }
     },
-    async uploadImage(id, imagefile){
+    async uploadImage(id: string, imagefile: File[]): Promise <boolean>{
         try {
             const response = await axios.post(`${this.baseUrl}/api/images/${id}/upload`, imagefile);
             return response.data;
@@ -154,7 +154,7 @@ export const placemarkService = {
             return false;
         }
     },
-    async deleteImage(id){
+    async deleteImage(id: string): Promise<boolean>{
         try {
             const response = await axios.delete(`${this.baseUrl}/api/images/${id}/delete`);
             return response.data;

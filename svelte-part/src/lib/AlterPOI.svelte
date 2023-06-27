@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
     import { placemarkService } from "../services/placemarkService.ts";
-    import {onMount} from "svelte";
+    import type {Category} from "../services/placemark-types";
     export let data;
 
-    let selectedCategory = "";
+    let selectedCategory: Category;
 
     let message = "Change the placemark";
     async function alterPlacemark() {

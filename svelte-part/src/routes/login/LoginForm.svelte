@@ -2,9 +2,9 @@
 	import { goto } from "$app/navigation";
 	import {placemarkService} from "../../services/placemarkService";
 
-	let email = "";
-	let password = "";
-	let errorMessage = "";
+	let email:string = "";
+	let password:string = "";
+	let errorMessage:string = "";
 
 	async function login() {
 		console.log(`attemting to log in email: ${email} with password: ${password}`);

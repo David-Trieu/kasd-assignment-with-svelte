@@ -1,5 +1,5 @@
-<script>
-  import {afterUpdate, onMount} from "svelte";
+<script lang="ts">
+  import { onMount} from "svelte";
   import Header from '$lib/Header.svelte';
   import Navigator from "$lib/Navigator.svelte";
   import PlacemarkMap from "$lib/PlacemarkMap.svelte";
