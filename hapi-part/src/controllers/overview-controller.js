@@ -45,7 +45,7 @@ export const overviewController = {
                     latitude: request.payload.latitude,
                     longitude: request.payload.longitude,
                 },
-                categoryId: request.payload.category,
+                categoryId: category._id,
                 categoryName: category.name,
             }
             await db.poiStore.addPOI(loggedInUser._id,newPOI);
@@ -57,11 +57,35 @@ export const overviewController = {
             const  loggedInUser = request.auth.credentials;
             const user = await db.userStore.getUserById(loggedInUser._id);
             const POI = await db.poiStore.getPOIById(request.params.id);
-            if(user.hasAdminRights){
+            if(user.hasAdminRights||user._id == POI.createdBy){
                 await db.poiStore.deletePOIById(POI._id);
                 return h.redirect("/overview");
             }
             return h.redirect("/overview");
+        }
+    },
+    alterPOI:{
+        handler: async function (request, h){
+            const loggedInUser = request.auth.credentials;
+            const POI = await db.poiStore.getPOIById(request.params.id);
+            const category = await db.categoryStore.getCategoryById(request.payload.category);
+            const newPOI = {
+                createdBy: loggedInUser._id,
+                name: request.payload.name,
+                description: request.payload.description,
+                location: {
+                    latitude: request.payload.latitude,
+                    longitude: request.payload.longitude,
+                },
+                categoryId: category._id,
+                categoryName: category.name,
+                img: POI.img
+            }
+            if(loggedInUser.hasAdminRights || loggedInUser._id === POI.createdBy){
+                await db.poiStore.updatePOI(POI, newPOI);
+                return h.redirect(`/poi/${POI._id}`);
+            }
+            return h.redirect(`/poi/${POI._id}`);
         }
     }
 };

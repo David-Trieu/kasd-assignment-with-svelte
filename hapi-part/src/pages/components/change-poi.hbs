@@ -1,0 +1,26 @@
+
+<form action="/overview/alterpoi/{{poi._id}}" method="POST">
+    <div class="column">
+        <div class="field">
+            <label class="label">Change entry:</label>
+            <input class="input" type="text" placeholder="Name" name="name" value="{{poi.name}}">
+            <input class="input" type="number" placeholder="Lat" name="latitude" value="{{poi.location.latitude}}">
+            <input class="input" type="number" placeholder="Long" name="longitude" value="{{poi.location.longitude}}">
+            <input class="input" type="text" placeholder="Description" name="description" value="{{poi.description}}">
+            <label class="label">Category</label>
+            <div class="control">
+                <div class="select">
+                    <select class="input" name="category">
+                        {{#each category}}
+                            <option value={{_id}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+
+    <button class="button is-link">Change Point of Interest</button>
+    </div>
+</form>

@@ -6,3 +6,8 @@
 <Header>
     <LoginOrSignUp />
 </Header>
+<div class="columns">
+    <div class="column has-text-centered">
+        <img alt="maps" src="/maps.png" width="600" />
+    </div>
+</div>

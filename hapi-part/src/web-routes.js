@@ -15,10 +15,13 @@ export const webRoutes = [
     { method: "GET", path: "/overview", config: overviewController.index },
     { method: "POST", path: "/overview/addpoi", config: overviewController.addPOI },
     { method: "GET", path: "/overview/deletepoi/{id}", config: overviewController.deletePOI },
+    { method: "POST", path: "/overview/alterpoi/{id}", config: overviewController.alterPOI },
 
 
     { method: "GET", path: "/poi/{id}", config: poiController.index },
     { method: "POST", path: "/poi/{id}/uploadimage", config: poiController.uploadImage },
+    { method: "GET", path: "/poi/{id}/deleteimage", config: poiController.deleteImage },
+
 
     { method: "GET", path: "/admin", config: adminController.index },
     { method: "GET", path: "/admin/deleteuser/{id}", config: adminController.deleteUser },

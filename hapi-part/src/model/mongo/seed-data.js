@@ -1,21 +1,26 @@
 export const seedData = {
   users: {
     _model: "User",
-    BigT: {
-      userName:"BigT",
-      email: "bigt@big.com",
-      password: "bigt"
+    George: {
+      userName:"George",
+      email: "George@george.com",
+      password: "g"
     },
-    BigR: {
-      userName:"BigR",
-      email: "bigr@big.com",
-      password: "bigr"
+    Mona: {
+      userName:"Mona",
+      email: "Mona@mona.com",
+      password: "m"
     },
     Admin: {
       userName:"Admin",
       email: "admin@admin.com",
       password: "admin",
       hasAdminRights: true,
+    },
+    David: {
+      userName:"David",
+      email:"d@d.com",
+      password: "d",
     }
   },
   categories:{
@@ -78,11 +83,33 @@ export const seedData = {
         longitude:"0"
       },
       description:"Null Island is the point on Earth's surface at zero degrees latitude and zero degrees longitude",
-      img: "",
       categoryId: "->categories.cat7",
       categoryName: "->categories.cat7.name",
       createdBy: "->users.Admin",
+    },
+    poi2:{
+      name: "Regensburg",
+      location:{
+        latitude:"49.0134",
+        longitude:"12.1016"
+      },
+      description:"Regensburg is a German city located in Bavaria.",
+      categoryId: "->categories.cat9",
+      categoryName: "->categories.cat9.name",
+      createdBy: "->users.David",
+    },
+    poi3:{
+      name: "Eiffel Tower",
+      location:{
+        latitude:"48.858",
+        longitude:"2.2944"
+      },
+      description:"The Eiffel Tower is a famous monument in Paris.",
+      categoryId: "->categories.cat2",
+      categoryName: "->categories.cat2.name",
+      createdBy: "->users.Mona",
+    },
 
-    }
+
   }
 };

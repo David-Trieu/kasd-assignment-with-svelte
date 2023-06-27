@@ -38,18 +38,25 @@
         <label class="label" for="description">Description:</label>
         <input bind:value={description} class="input" id="description" name="description" type="text" />
     </div>
-    <div class="field">
-        <label class="label" for="latitude">Latitude:</label>
-        <input bind:value={latitude} class="input" id="latitude" name="latitude" type="number" step="0.00001" min="-90" max="90" />
+    <div class="columns is-vcentered">
+        <div class="column is-half">
+            <div class="field">
+                <label class="label" for="latitude">Latitude:</label>
+                <input bind:value={latitude} class="input" id="latitude" name="latitude" type="number" step="0.00001" min="-90" max="90" />
+            </div>
+        </div>
+        <div class="column is-half">
+            <div class="field">
+                <label class="label" for="longitude">Longitude:</label>
+                <input bind:value={longitude} class="input" id="longitude" name="longitude" type="number" step="0.00001" min="-180" max="180" />
+            </div>
+        </div>
     </div>
     <div class="field">
-        <label class="label" for="longitude">Longitude:</label>
-        <input bind:value={longitude} class="input" id="longitude" name="longitude" type="number" step="0.00001" min="-180" max="180" />
-    </div>
-    <div class="field">
+        <label class="label" for="category">Choose Category:</label>
         <div class="control">
             <div class="select">
-                <select bind:value={selectedCategory} class="input" name="category">
+                <select bind:value={selectedCategory} class="input" name="category" id="category">
                     {#each categories as category}
                         <option value={category}>{category.name}</option>
                     {/each}

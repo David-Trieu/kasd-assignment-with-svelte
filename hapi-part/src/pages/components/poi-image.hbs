@@ -1,8 +1,10 @@
 <div class="card">
     <div class="card-image">
-        <figure class="image is-256x256">
-            <img src={{poi.img}}>
-        </figure>
+        {{#each poi.img}}
+            <figure class="image is-256x256">
+                <img src={{this}}>
+            </figure>
+        {{/each}}
     </div>
     <div class="card-content">
         <form action="/poi/{{poi._id}}/uploadimage" method="POST" enctype="multipart/form-data">
@@ -21,6 +23,9 @@
                 <button type="submit" class="button is-info">Upload</button>
             </div>
         </form>
+    </div>
+    <div class="card-content">
+        <a href="/poi/{{poi._id}}/deleteimage" class="button is-danger" method="GET">Delete</a>
     </div>
 </div>
 <script>

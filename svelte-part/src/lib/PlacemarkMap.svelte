@@ -15,26 +15,26 @@
     export let mapName
     export let layer
 
+
     onMount(async () => {
         map = new LeafletMap(mapName, mapConfig, layer);
         map.showZoomControl();
-        map.addLayerGroup("Point of interest");
+        map.addLayerGroup("POI");
         map.showLayerControl();
         const pois = await placemarkService.getAllPOIS();
         pois.forEach((poi) => {
-            addPOIMarker(map, poi);
+            let poiStr = `${poi.name} <br> ${poi.description} <br>${poi.categoryName}`
+            map.addMarker({ lat: poi.location.latitude, lng: poi.location.longitude },poiStr, "POI", poi._id);
         });
+        map.moveTo(2, { lat: 49, lng: 12 });
     });
 
-    function addPOIMarker(map, poi) {
-        const poiStr = `${poi.name}: <br> ${poi.description} <br> Category: ${poi.categoryName}`;
-        map.addMarker({ lat: poi.location.latitude, lng: poi.location.longitude }, poiStr, "Point of interest");
-        map.moveTo(8, { lat: poi.location.latitude, lng: poi.location.longitude });
-    }
 
     latestPOI.subscribe(async (poi) => {
         if (poi && map) {
-            await addPOIMarker(map, poi);
+            let poiStr = `${poi.name} <br> ${poi.description} <br> Category ${poi.categoryName}`
+           await map.addMarker({ lat: poi.location.latitude, lng: poi.location.longitude },poiStr, "POI", poi._id);
+           await map.moveTo(8, { lat: poi.location.latitude, lng: poi.location.longitude });
         }
     });
 

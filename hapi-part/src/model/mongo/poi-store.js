@@ -20,13 +20,6 @@ export const poiStore = {
         }
         return null;
     },
-    async getPOICreatedById(id) {
-        if (id) {
-            const POIByUserId = await POI.findOne({ createdById: id }).lean();
-            return POIByUserId;
-        }
-        return null;
-    },
     async addPOI(userid, inputPoi) {
         inputPoi.createdBy = userid;
         const newPOI = new POI(inputPoi);
@@ -43,11 +36,29 @@ export const poiStore = {
     async deleteAllPOIs() {
         await POI.deleteMany({});
     },
-    async updatePOI(updatedPOI) {
-        const changePOI = await POI.findOne({_id: updatedPOI._id});
-        changePOI.title = updatedPOI.title;
-        changePOI.img = updatedPOI.img;
+    async updatePOI(oldPOI, updatedPOI) {
+        const changePOI = await POI.findOne({_id: oldPOI._id});
+        changePOI.name = updatedPOI.name
+        changePOI.description = updatedPOI.description
+        changePOI.location.latitude = updatedPOI.location.latitude
+        changePOI.location.longitude = updatedPOI.location.longitude
+        changePOI.img = updatedPOI.img
+        changePOI.categoryId = updatedPOI.categoryId
+        changePOI.categoryName = updatedPOI.categoryName
+        changePOI.createdBy = updatedPOI.createdBy
         await changePOI.save();
     },
+    async uploadImage(poi, img){
+        const newpoi = await POI.findOne({ _id: poi._id });
+        newpoi.img.push(img);
+        await newpoi.save();
+    },
+    async deleteImage(poi){
+        const newpoi = await POI.findOne({ _id: poi._id });
+        newpoi.img = [];
+        await newpoi.save();
+    }
+}
 
-};
+
+;

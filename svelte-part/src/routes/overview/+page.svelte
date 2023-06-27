@@ -1,5 +1,5 @@
 <script>
-  import { onMount} from "svelte";
+  import {afterUpdate, onMount} from "svelte";
   import Header from '$lib/Header.svelte';
   import Navigator from "$lib/Navigator.svelte";
   import PlacemarkMap from "$lib/PlacemarkMap.svelte";
@@ -12,7 +12,6 @@
   onMount(async () => {
     categories = await placemarkService.getAllCategories();
   });
-
 </script>
 
 <Header>
