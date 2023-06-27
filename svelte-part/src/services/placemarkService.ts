@@ -1,6 +1,6 @@
 import axios from "axios";
 import { latestPOI,loggedInUser } from "../stores.ts";
-import type {Category, inputPOI, outputPOI, POI, User} from "./placemark-types.ts";
+import type {Category, outputPOI, POI, User} from "./placemark-types.ts";
 
 
 export const placemarkService = {
