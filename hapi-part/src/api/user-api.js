@@ -25,11 +25,12 @@ export const userApi = {
     },
 
     findOne: {
-        auth: false,
-
+        auth: {
+            strategy: "jwt",
+        },
         handler: async function(request, h) {
             try {
-                const user = await db.userStore.getUserById(request.params.id);
+                const user = await db.userStore.getUserById(request.auth.credentials._id);
                 if (!user) {
                     return Boom.notFound("No User with this id");
                 }
@@ -41,7 +42,6 @@ export const userApi = {
         tags: ["api"],
         description: "Get one user",
         notes: "Returns details of one user",
-        validate: { params: { id: IdSpec }, failAction: validationError },
         response: { schema: UserSpecPlus, failAction: validationError },
     },
     create: {
@@ -68,7 +68,6 @@ export const userApi = {
         auth: {
             strategy: "jwt",
         },
-
         handler: async function(request, h) {
             try {
                 await db.userStore.deleteAllUser();
@@ -85,9 +84,6 @@ export const userApi = {
         handler: async function (request, h) {
             try {
                 const user = await db.userStore.getUserByEmail(request.payload.email);
-                /*if(!user.hasAdminRights){
-                    return Boom.unauthorized("Not Admin");
-                }*/
                 if (!user) {
                     return Boom.unauthorized("User not found");
                 }

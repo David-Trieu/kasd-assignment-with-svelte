@@ -46,9 +46,9 @@ export const placemarkService = {
             return false;
         }
     },
-    async getUser(id){
+    async getUser(){
         try {
-            const response = await axios.get(`${this.baseUrl}/api/users/${id}`);
+            const response = await axios.get(`${this.baseUrl}/api/users/one`);
             return response.data;
         } catch (error) {
             return error;

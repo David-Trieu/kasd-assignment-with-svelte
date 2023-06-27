@@ -49,7 +49,7 @@ export const imageApi = {
             try {
                 const loggedInUser = request.auth.credentials;
                 const poi = await db.poiStore.getPOIById(request.params.id);
-                if (loggedInUser.hasAdminRights || poi.createdBy === loggedInUser._id)
+                if (loggedInUser.hasAdminRights || poi.createdBy.equals(loggedInUser._id))
                 {
                     for (let url of poi.img) {
                         await imageStore.deleteImage(url);

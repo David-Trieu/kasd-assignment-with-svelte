@@ -84,17 +84,19 @@ export const poiApi = {
         description: "Delete all points of interest",
     },
     deleteOne:{
-        auth: false,
+        auth: {
+            strategy: "jwt",
+        },
         handler: async function(request, h) {
             try {
-                const loggedInUser = request.auth.credentials;
+                const loggedInUser = request.auth.credentials
                 const poi = await db.poiStore.getPOIById(request.params.id);
-                if (loggedInUser.hasAdminRights || poi.createdBy === loggedInUser._id) {
+                if (loggedInUser.hasAdminRights || poi.createdBy.equals(loggedInUser._id)) {
                     await db.poiStore.deletePOIById(poi._id);
                     return h.response().code(204);
                 }
             } catch (err) {
-                return Boom.serverUnavailable("Database Error");
+                return Boom.serverUnavailable(err);
             }
         },
         tags: ["api"],
@@ -110,7 +112,7 @@ export const poiApi = {
                 const loggedInUser = request.auth.credentials;
                 const newPOI = request.payload;
                 const poi = await db.poiStore.getPOIById(request.params.id);
-                if (loggedInUser.hasAdminRights || poi.createdBy === loggedInUser._id) {
+                if (loggedInUser.hasAdminRights || poi.createdBy.equals(loggedInUser._id)) {
                     await db.poiStore.updatePOI(poi, newPOI);
                     return true;
                 }

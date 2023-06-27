@@ -10,9 +10,6 @@
     export let data
     const apiKey = import.meta.env.VITE_OPWAPI
 
-    let poi;
-    poi = data.poi;
-
     let fileName = "";
     let files;
     let conditions;
@@ -26,15 +23,15 @@
         }
     }
     async function uploadImage() {
-        await placemarkService.uploadImage(poi._id, files);
+        await placemarkService.uploadImage(data.poi._id, files);
         await goto("/explore");
     }
     async function deleteImage(){
-        await placemarkService.deleteImage(poi._id);
+        await placemarkService.deleteImage(data.poi._id);
         await goto("/explore");
     }
     onMount(async () => {
-        const requestUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${poi.location.latitude}&lon=${poi.location.longitude}&units=metric&appid=${apiKey}` ;
+        const requestUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${data.poi.location.latitude}&lon=${data.poi.location.longitude}&units=metric&appid=${apiKey}` ;
         await fetch(requestUrl, {
             mode: 'cors'
         })
@@ -54,16 +51,16 @@
 <div class="columns is-vcentered">
     <div class="column">
         <div class="title">
-            {poi.name}
+            {data.poi.name}
         </div>
         <div class="subtitle">
-            {poi.description}
+            {data.poi.description}
         </div>
         <div class="subtitle">
-            Location: {poi.location.latitude}, {poi.location.longitude}
+            Location: {data.poi.location.latitude}, {data.poi.location.longitude}
         </div>
         <div class="subtitle">
-            Category: {poi.categoryName}
+            Category: {data.poi.categoryName}
         </div>
         <div class="subtitle">
             Weather: {conditions?.weather[0]?.main}
@@ -72,12 +69,12 @@
             Temperature: {conditions?.main?.temp} °C
         </div>
     </div>
-    {#if 1}
-        <div class="column">
-            <AlterPOI {data}/>
-        </div>
-    {/if}
 </div>
+<details>
+    <summary><span class="has-text-info">Edit if it is yours</span></summary>
+    <div class="column"><AlterPOI {data}/></div>
+
+</details>
 <div class="columns is-centered">
     <div class="column is-half">
         <div class="card">
@@ -107,7 +104,7 @@
                 </form>
             </div>
         </div>
-        {#each poi.img as img}
+        {#each data.poi.img as img}
             <figure class="image is-256x256">
                 <img src={img} alt="">
             </figure>
